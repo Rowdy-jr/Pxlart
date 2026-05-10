@@ -5,25 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PXLmoon | Digital Suite</title>
     <style>
+        /* Reset and Base Setup */
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: white;
-            overflow: hidden; 
-            background-color: #050514; /* Fallback dark color just in case */
+            overflow: hidden; /* Locks the screen so the fog doesn't create scrollbars */
         }
 
+        /* The Live WebGL Background Container */
         #vanta-bg {
             width: 100vw;
             height: 100vh;
             position: absolute;
             top: 0;
             left: 0;
-            z-index: -1; 
+            z-index: -1; /* Pushes the fog behind everything else */
         }
 
+        /* The UI Layer */
         .ui-layer {
             position: relative;
             width: 100%;
@@ -31,57 +33,57 @@
             z-index: 1; 
         }
 
+        /* 1. Top Left Logo */
         .logo {
             position: absolute;
             top: 30px;
             left: 30px;
-            height: 80px; 
-            filter: drop-shadow(0 0 15px rgba(142, 245, 238, 0.6));
+            height: 70px; /* You can adjust this scale */
+            filter: drop-shadow(0 0 10px rgba(142, 245, 238, 0.4)); /* Adds a slight glow */
         }
 
+        /* 2. Left Center Button Group */
         .button-group {
             position: absolute;
             top: 50%;
             left: 40px;
-            transform: translateY(-50%); 
+            transform: translateY(-50%); /* Perfectly centers it vertically */
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
+        /* Temporary Button Styling (Glassmorphism) */
         .nav-btn {
-            padding: 16px 32px;
-            background: rgba(10, 10, 25, 0.8); 
-            border: 2px solid #8ef5ee; 
-            color: #8ef5ee; 
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(61, 157, 238, 0.3);
+            backdrop-filter: blur(8px);
+            color: white;
             font-size: 18px;
-            font-weight: 800; 
-            letter-spacing: 2px;
+            font-weight: bold;
+            letter-spacing: 1px;
             cursor: pointer;
-            border-radius: 4px; 
-            transition: all 0.2s ease;
+            border-radius: 8px;
+            transition: all 0.3s ease;
             text-align: left;
-            box-shadow: 0 0 10px rgba(142, 245, 238, 0.2); 
-            text-shadow: 0 0 5px rgba(142, 245, 238, 0.5); 
-            text-transform: uppercase;
         }
 
         .nav-btn:hover {
             background: rgba(142, 245, 238, 0.15);
-            border-color: #ffffff;
-            color: #ffffff;
-            transform: translateX(15px); 
-            box-shadow: 0 0 20px rgba(142, 245, 238, 0.8), inset 0 0 10px rgba(142, 245, 238, 0.4); 
-            text-shadow: 0 0 8px #ffffff;
+            border-color: rgba(142, 245, 238, 0.8);
+            transform: translateX(10px); /* Slides right on hover */
+            box-shadow: 0 0 15px rgba(142, 245, 238, 0.4);
         }
 
+        /* 3. Bottom Copyright */
         .copyright {
             position: absolute;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 12px;
-            color: rgba(255, 255, 255, 0.4);
+            color: rgba(255, 255, 255, 0.6);
             letter-spacing: 2px;
         }
     </style>
@@ -95,9 +97,9 @@
         <img src="Pxlmoon.png" alt="PXLmoon Logo" class="logo">
 
         <div class="button-group">
-            <button class="nav-btn">Document Tools</button>
-            <button class="nav-btn">Passport Gen</button>
-            <button class="nav-btn">System Settings</button>
+            <button class="nav-btn">DOCUMENT TOOLS</button>
+            <button class="nav-btn">PASSPORT GEN</button>
+            <button class="nav-btn">SETTINGS</button>
         </div>
 
         <div class="copyright">
@@ -106,9 +108,10 @@
 
     </div>
 
-    <script src="three.r134.min.js"></script>
-    <script src="vanta.fog.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
     <script>
+        // Note: I added a '0' to midtoneColor to make it a valid 6-digit hex code
         VANTA.FOG({
           el: "#vanta-bg",
           mouseControls: true,
@@ -116,10 +119,10 @@
           gyroControls: false,
           minHeight: 200.00,
           minWidth: 200.00,
-          highlightColor: 0x8ef5ee, 
-          midtoneColor: 0x1a0b2e,   
-          lowlightColor: 0x050514,  
-          baseColor: 0x0a0a1a,      
+          highlightColor: 0x4b4bcd,
+          midtoneColor: 0x0e4134, 
+          lowlightColor: 0x61b0dc,
+          baseColor: 0x8ef5ee,
           speed: 0.30,
           zoom: 0.60
         })
